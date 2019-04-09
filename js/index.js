@@ -1,7 +1,7 @@
 // Your code goes here
 // Nav changes
 const navEffect = document.querySelector('.nav');
-const anchorTag = document.querySelectorAll('.nav-link');
+
 
 navEffect.addEventListener('mouseover', event => {
 	event.target.style.color = 'green';
