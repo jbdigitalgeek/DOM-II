@@ -5,7 +5,8 @@ const anchorTag = document.querySelectorAll('.nav-link');
 
 navEffect.addEventListener('mouseover', event => {
 	event.target.style.color = 'green';
-	event.target.style.fontSize = 'large';
+    event.target.style.fontSize = 'large';
+    
 });
 navEffect.addEventListener('mouseout', event => {
 	event.target.style.color = '#212529';
@@ -13,14 +14,14 @@ navEffect.addEventListener('mouseout', event => {
 });
 navEffect.addEventListener('click', event => {
     event.preventDefault();
-    //stop prop here kept clicking from being ignored pagewide
-	event.stopPropagation();
+  
+	
 });
 
 // logo heading changes
 const logoEffect = document.querySelector('h1');
 logoEffect.addEventListener('dblclick', event => {
-	event.target.style.color = 'pink';
+    event.target.style.color = 'pink';
 });
 logoEffect.addEventListener('wheel', event => {
 	event.target.style.fontSize = '500%';
@@ -39,62 +40,39 @@ buttonEffect.forEach(function(buttonFunction) {
 		buttonFunction.addEventListener('mousedown', event => {
 			event.target.style.fontSize = 'x-large';
 			buttonFunction.addEventListener('mouseup', event => {
-				event.target.style.fontSize = '125%';
+                event.target.style.fontSize = '125%';
 			});
-		});
-	});
+        });
+        event.stopPropagation();
+    });
+    
 });
 
 
 //propagation tests
-const propTest = document.querySelector('.nav-container');
+const propTest = document.querySelector('.destination');
 propTest.addEventListener('click', (event) => {
-    if (event.target.style.backgroundColor === "blue") {
-        event.target.style.backgroundColor = "";
-    } else {
-        event.target.style.backgroundColor = "blue";
-        //stop prop here keeps the blue background from sticking to h1-funbus
-        event.stopPropagation();
-            }
-    
+    event.target.style.backgroundColor = "blue";
 })
-//draggable picture
-// let dragged;
-// const dragImg = document.querySelector('img');
+const propTest2 = document.querySelector('h4');
+propTest2.addEventListener('click', (event) => {
+    event.target.style.backgroundColor = "red";
+    event.stopPropagation();
+})
 
-// dragImg.addEventListener('drag', (event) => {
 
-// }, false);
-// dragImg.addEventListener('dragstart', (event) => {
-//     dragged = event.target;
-//     event.target.style.opacity = '.5';
-// }, false);
+var tl = new TimelineMax({repeat:6, repeatDelay:1, yoyo:true});
+tl.staggerTo("h1", 0.2, {className:"+=superShadow", top:"-=10px", ease:Power1.easeIn}, "0.3", "start")
 
-// dragImg.addEventListener('dragend', (event) => {
-//     event.target.style.opacity = '';
-// }, false);
+//animation powered by GSAP JS
+//http:www.greensock.com/gsap-js/
+  
 
-// dragImg.addEventListener('dragover', (event) => {
-//     event.preventDefault();
-// }, false);
 
-// dragImg.addEventListener('dragenter', (event) => {
-//     if (event.target.className === "content-section") {
-//         event.target.background = "grey";
-//     }
-// }, false);
 
-// dragImg.addEventListener('dragleave', (event) => {
-//     if (event.target.className === "content-section") {
-//         event.target.background = "";
-//     }
-// }, false);
+/*
+special thanks to Daniel Riemer who created the text-shadow style and original pen
 
-// dragImg.addEventListener('drop', (event) => {
-//     event.preventDefault();
-//     if (event.target.className === "content-section") {
-//         event.target.background = "";
-//         dragged.parentNode.removeChild(dragged);
-//         event.target.appendChild(dragged);
-//     }
-// }, false);
+https://codepen.io/zitrusfrisch
+
+*/
