@@ -12,15 +12,15 @@ navEffect.addEventListener('mouseout', event => {
 	event.target.style.fontSize = 'medium';
 });
 navEffect.addEventListener('click', event => {
-	event.preventDefault();
+    event.preventDefault();
+    //stop prop here kept clicking from being ignored pagewide
+	event.stopPropagation();
 });
+
 // logo heading changes
 const logoEffect = document.querySelector('h1');
 logoEffect.addEventListener('dblclick', event => {
 	event.target.style.color = 'pink';
-});
-logoEffect.addEventListener('click', event => {
-	event.target.style.color = '';
 });
 logoEffect.addEventListener('wheel', event => {
 	event.target.style.fontSize = '500%';
@@ -45,6 +45,19 @@ buttonEffect.forEach(function(buttonFunction) {
 	});
 });
 
+
+//propagation tests
+const propTest = document.querySelector('.nav-container');
+propTest.addEventListener('click', (event) => {
+    if (event.target.style.backgroundColor === "blue") {
+        event.target.style.backgroundColor = "";
+    } else {
+        event.target.style.backgroundColor = "blue";
+        //stop prop here keeps the blue background from sticking to h1-funbus
+        event.stopPropagation();
+            }
+    
+})
 //draggable picture
 // let dragged;
 // const dragImg = document.querySelector('img');
